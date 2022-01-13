@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # flood:
+  #   hostname: flood
+  #   image: jesec/flood
+  #   user: 1000:1000
+  #   restart: unless-stopped
+  #   command: --port 3001 --allowedpath /data
+  #   environment:
+  #     - HOME=/config
+  #     - PUID=1000
+  #     - PGID=1000
+  #   volumes:
+  #     - /home/barklan/Downloads/torrents/config:/config
+  #     - /root:/data
+  #   links:
+  #     - qbittorrent:qbittorrent
+  #   ports:
+  #     - 127.0.0.1:3001:3001
+
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - WEBUI_PORT=8080
+    volumes:
+      - /root/config:/config
+      - /root/torrents:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    restart: unless-stopped
