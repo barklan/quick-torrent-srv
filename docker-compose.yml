@@ -28,8 +28,8 @@ services:
       - TZ=Europe/London
       - WEBUI_PORT=8080
     volumes:
-      - /root/config:/config
-      - /root/torrents:/downloads
+      - /home/barklan/config:/config
+      - /home/barklan/torrents:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
